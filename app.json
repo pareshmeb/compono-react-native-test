@@ -1,0 +1,12 @@
+{
+  "name": "takehome-reactnative",
+  "displayName": "takehome-reactnative",
+  "expo": {
+    "name": "takehome-reactnative",
+    "slug": "takehome-reactnative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
