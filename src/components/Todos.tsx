@@ -25,7 +25,20 @@ const styles = StyleSheet.create({
 export const Todos = () => {
   const [items, setItems] = useState<Item[]>([]);
 
-  const addItem = (item: string) => setItems([...items, { key: `item${items.length}`, title: item }]);
+  function compare( a: Item, b: Item ) {
+    if ( a.title < b.title ){
+      return -1;
+    }
+    if ( a.title > b.title ){
+      return 1;
+    }
+    return 0;
+  }
+
+  const addItem = (item: string) => {
+    const sortedItems = [...items, { key: `item${items.length}`, title: item }].sort(compare)
+    setItems(sortedItems);
+  }
 
   return (
     <View>
