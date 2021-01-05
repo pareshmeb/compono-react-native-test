@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 
 import { CreateEntry } from './CreateEntry';
 
@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
   },
   itemView: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 12,
     borderTopColor: 'silver',
     borderTopWidth: 1,
@@ -40,6 +42,10 @@ export const Todos = () => {
     setItems(sortedItems);
   }
 
+  const deleteItem = (itemKey: string) => {
+    setItems(items.filter(item => item.key !== itemKey));
+  }
+
   return (
     <View>
       <Text style={styles.summary}>There {items.length == 1 ? 'is' : 'are'} {items.length > 0 ? items.length : 'no'} item{items.length == 1 ? '' : 's'}</Text>
@@ -49,6 +55,7 @@ export const Todos = () => {
         renderItem={({ item }) => (
           <View key={item.key} style={styles.itemView}>
             <Text>{item.title}</Text>
+            <Button onPress={_ => deleteItem(item.key)} title="Delete" />
           </View>
         )}
       />
