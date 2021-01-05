@@ -10,7 +10,7 @@ const entries = [];
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#eee',
     padding: 0,

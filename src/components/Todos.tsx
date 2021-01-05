@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 
 import { CreateEntry } from './CreateEntry';
+import { sample } from '../data/sample';
 
 type Item = {
   key: string;
@@ -9,6 +10,9 @@ type Item = {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   summary: {
     padding: 12,
     fontSize: 16,
@@ -18,24 +22,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     borderTopColor: 'silver',
     borderTopWidth: 1,
   }
 });
 
-export const Todos = () => {
-  const [items, setItems] = useState<Item[]>([]);
-
-  function compare( a: Item, b: Item ) {
-    if ( a.title < b.title ){
-      return -1;
-    }
-    if ( a.title > b.title ){
-      return 1;
-    }
-    return 0;
+function compare( a: Item, b: Item ) {
+  if ( a.title < b.title ){
+    return -1;
   }
+  if ( a.title > b.title ){
+    return 1;
+  }
+  return 0;
+}
+
+export const Todos = () => {
+  const defaultSet = sample.map((title, index) => ({ key: index.toString(), title })).sort(compare);
+  const [items, setItems] = useState<Item[]>(defaultSet);
 
   const addItem = (item: string) => {
     const sortedItems = [...items, { key: `item${items.length}`, title: item }].sort(compare)
@@ -47,8 +53,7 @@ export const Todos = () => {
   }
 
   return (
-    <View>
-      <Text style={styles.summary}>There {items.length == 1 ? 'is' : 'are'} {items.length > 0 ? items.length : 'no'} item{items.length == 1 ? '' : 's'}</Text>
+    <View style={styles.container}>
       <CreateEntry onSave={addItem} />
       <FlatList
         data={items}
@@ -59,6 +64,7 @@ export const Todos = () => {
           </View>
         )}
       />
+      <Text style={styles.summary}>There {items.length == 1 ? 'is' : 'are'} {items.length > 0 ? items.length : 'no'} item{items.length == 1 ? '' : 's'}</Text>
     </View>
   )
 
