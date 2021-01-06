@@ -1,6 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import { Header } from './Header';
 import { Todos } from './Todos';
@@ -11,7 +10,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#eee',
     padding: 0,
   },
