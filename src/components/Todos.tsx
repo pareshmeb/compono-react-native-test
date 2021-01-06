@@ -58,13 +58,13 @@ export const Todos = () => {
       <FlatList
         data={items}
         renderItem={({ item }) => (
-          <View key={item.key} style={styles.itemView}>
+          <View key={item.key} testID="item" style={styles.itemView}>
             <Text>{item.title}</Text>
-            <Button onPress={_ => deleteItem(item.key)} title="Delete" />
+            <Button testID="deleteButton" onPress={_ => deleteItem(item.key)} title="Delete" />
           </View>
         )}
       />
-      <Text style={styles.summary}>There {items.length == 1 ? 'is' : 'are'} {items.length > 0 ? items.length : 'no'} item{items.length == 1 ? '' : 's'}</Text>
+      <Text style={styles.summary} testID="summary">{`There ${items.length == 1 ? 'is' : 'are'} ${items.length > 0 ? items.length : 'no'} item${items.length == 1 ? '' : 's'}`}</Text>
     </View>
   )
 

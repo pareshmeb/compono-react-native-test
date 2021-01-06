@@ -34,7 +34,7 @@ export const CreateEntry = ({ onSave }: Props) => {
   return (
     <View style={styles.layout}>
       <TextInput placeholder="Name" style={styles.input} onChangeText={setValue} value={value} onSubmitEditing={handleAdd} />
-      <Button title="Add" onPress={handleAdd} />
+      <Button testID="addButton" title="Add" onPress={handleAdd} />
     </View>
   );
 };
