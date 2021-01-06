@@ -6,7 +6,7 @@ import { sample } from '../data/sample';
 
 type Item = {
   key: string;
-  title: string;
+  name: string;
 }
 
 const styles = StyleSheet.create({
@@ -30,21 +30,21 @@ const styles = StyleSheet.create({
 });
 
 function compare( a: Item, b: Item ) {
-  if ( a.title < b.title ){
+  if ( a.name < b.name ){
     return -1;
   }
-  if ( a.title > b.title ){
+  if ( a.name > b.name ){
     return 1;
   }
   return 0;
 }
 
 export const Todos = () => {
-  const defaultSet = sample.map((title, index) => ({ key: index.toString(), title }));
+  const defaultSet = sample.map((name, index) => ({ key: index.toString(), name }));
   const [items, setItems] = useState<Item[]>(defaultSet);
 
   const addItem = (item: string) => {
-    const sortedItems = [...items, { key: `item${items.length}`, title: item }].sort(compare)
+    const sortedItems = [...items, { key: `item${items.length}`, name: item }].sort(compare)
     setItems(sortedItems);
   }
 
@@ -59,7 +59,7 @@ export const Todos = () => {
         data={items}
         renderItem={({ item }) => (
           <View key={item.key} testID="item" style={styles.itemView}>
-            <Text>{item.title}</Text>
+            <Text>{item.name}</Text>
             <Button testID="deleteButton" onPress={_ => deleteItem(item.key)} title="Delete" />
           </View>
         )}
