@@ -15,7 +15,7 @@ describe('<CreateEntry />', () => {
     fireEvent.changeText(getByPlaceholderText('Name'), "Some item");
     fireEvent.press(getByTestId('addButton'));
 
-    expect(onSaveMock).toHaveBeenCalledWith('Some item');
+    expect(onSaveMock).toHaveBeenCalledWith({ name: 'Some item', points: 0 });
   });
 
   it('does not save empty item', () => {
@@ -27,5 +27,16 @@ describe('<CreateEntry />', () => {
     fireEvent.press(getByTestId('addButton'));
 
     expect(onSaveMock).not.toHaveBeenCalled();
+  });
+
+  it('parses points', () => {
+    const onSaveMock = jest.fn();
+
+    const { getByPlaceholderText, getByTestId } = render(<CreateEntry onSave={onSaveMock} />);
+
+    fireEvent.changeText(getByPlaceholderText('Name'), "Drink coffee 20pts");
+    fireEvent.press(getByTestId('addButton'));
+
+    expect(onSaveMock).toHaveBeenCalledWith({ name: 'Drink coffee', points: 20 });
   })
 });

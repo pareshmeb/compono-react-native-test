@@ -1,5 +1,5 @@
 export const sample = [
-  'Make a list',
-  'Check it twice',
-  'Get the job 👍🏼'
+  { name: 'Get the job 👍🏼', points: 10 },
+  { name: 'Check it twice', points: 8 },
+  { name: 'Make a list', points: 6 },
 ];

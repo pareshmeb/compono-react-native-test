@@ -3,11 +3,8 @@ import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 
 import { CreateEntry } from './CreateEntry';
 import { sample } from '../data/sample';
-
-type Item = {
-  key: string;
-  name: string;
-}
+import { Item, NewItem } from './types';
+import { ItemCard } from './ItemCard';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,33 +15,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
-  itemView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderTopColor: 'silver',
-    borderTopWidth: 1,
-  }
 });
 
-function compare( a: Item, b: Item ) {
-  if ( a.name < b.name ){
-    return -1;
-  }
-  if ( a.name > b.name ){
-    return 1;
-  }
+function byPointsAndName( a: Item, b: Item ) {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
   return 0;
 }
 
 export const Todos = () => {
-  const defaultSet = sample.map((name, index) => ({ key: index.toString(), name }));
-  const [items, setItems] = useState<Item[]>(defaultSet);
+  const defaultItems = sample.map((item, index) => ({ key: `item${index}`, ...item }));
+  defaultItems.sort(byPointsAndName);
+  const [items, setItems] = useState<Item[]>(defaultItems);
 
-  const addItem = (item: string) => {
-    const sortedItems = [...items, { key: `item${items.length}`, name: item }].sort(compare)
+  const addItem = (newItem: NewItem) => {
+    const item = { key: `item${items.length}`, ...newItem };
+    const sortedItems = [...items, item].sort(byPointsAndName);
     setItems(sortedItems);
   }
 
@@ -58,10 +44,10 @@ export const Todos = () => {
       <FlatList
         data={items}
         renderItem={({ item }) => (
-          <View key={item.key} testID="item" style={styles.itemView}>
-            <Text>{item.name}</Text>
-            <Button testID="deleteButton" onPress={_ => deleteItem(item.key)} title="Delete" />
-          </View>
+          <ItemCard
+            key={item.key}
+            onDelete={() => deleteItem(item.key)}
+          >{item.name}</ItemCard>
         )}
       />
       <Text style={styles.summary} testID="summary">{`There ${items.length == 1 ? 'is' : 'are'} ${items.length > 0 ? items.length : 'no'} item${items.length == 1 ? '' : 's'}`}</Text>

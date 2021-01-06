@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { NewItem } from './types';
 
 const styles = StyleSheet.create({
   layout: {
@@ -12,22 +13,22 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 40,
-    borderColor: 'silver',
-    borderWidth: 1,
-    paddingHorizontal: 5,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    paddingHorizontal: 8,
     marginRight: 10,
   }
 })
 
 type Props = {
-  onSave: (value: string) => void;
+  onSave: (newItem: NewItem) => void;
 }
 
 export const CreateEntry = ({ onSave }: Props) => {
   const [value, setValue] = useState<string>('');
 
   const handleAdd = () => {
-    value && onSave(value);
+    value && onSave({ name: value, points: 0 });
     setValue('');
   }
 
