@@ -40,7 +40,7 @@ function compare( a: Item, b: Item ) {
 }
 
 export const Todos = () => {
-  const defaultSet = sample.map((title, index) => ({ key: index.toString(), title })).sort(compare);
+  const defaultSet = sample.map((title, index) => ({ key: index.toString(), title }));
   const [items, setItems] = useState<Item[]>(defaultSet);
 
   const addItem = (item: string) => {
