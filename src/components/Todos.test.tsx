@@ -3,7 +3,6 @@ import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react-native';
 
-
 import { Todos } from './Todos';
 
 describe('<Todos />', () => {
@@ -28,9 +27,9 @@ describe('<Todos />', () => {
 
     const itemNames = getAllByTestId('itemName');
     expect(itemNames).toHaveLength(3);
-    expect(itemNames[0].props.children).toBe('Make a list');
-    expect(itemNames[1].props.children).toBe('Check it twice');
-    expect(itemNames[2].props.children).toBe('Get the job 👍🏼');
+    expect(itemNames[0].props.children).toBe('Get the job 👍🏼');
+    expect(itemNames[1].props.children).toBe('Make a list');
+    expect(itemNames[2].props.children).toBe('Check it twice');
   });
 
   it('renders items as critical', () => {
@@ -38,8 +37,8 @@ describe('<Todos />', () => {
 
     const itemNames = getAllByTestId('itemName');
     expect(itemNames).toHaveLength(3);
-    expect(itemNames[0].props.style.fontWeight).toBe(undefined);
+    expect(itemNames[0].props.style.fontWeight).toBe('bold');
     expect(itemNames[1].props.style.fontWeight).toBe(undefined);
-    expect(itemNames[2].props.style.fontWeight).toBe('bold');
+    expect(itemNames[2].props.style.fontWeight).toBe(undefined);
   });
 });

@@ -17,20 +17,13 @@ const styles = StyleSheet.create({
   },
 });
 
-function byPointsAndName( a: Item, b: Item ) {
-  if (a.name < b.name) return -1;
-  if (a.name > b.name) return 1;
-  return 0;
-}
-
 export const Todos = () => {
   const defaultItems = sample.map((item, index) => ({ key: `item${index}`, ...item }));
-  defaultItems.sort(byPointsAndName);
   const [items, setItems] = useState<Item[]>(defaultItems);
 
   const addItem = (newItem: NewItem) => {
     const item = { key: `item${items.length}`, ...newItem };
-    const sortedItems = [...items, item].sort(byPointsAndName);
+    const sortedItems = [...items, item];
     setItems(sortedItems);
   }
 
