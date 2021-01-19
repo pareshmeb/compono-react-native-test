@@ -47,6 +47,7 @@ export const Todos = () => {
         data={items}
         renderItem={({ item }) => (
           <ItemCard
+            critical = {item.points>=10 ? true: false}
             key={item.key}
             onDelete={() => deleteItem(item.key)}
           >{item.name}</ItemCard>
