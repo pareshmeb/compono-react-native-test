@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
 
 export const Todos = () => {
   const defaultItems = sample.map((item, index) => ({ key: `item${index}`, ...item }));
-  console.log(defaultItems);
   useEffect(()=>{
     defaultItems.sort((item, item2)=>{
       if(item.points > item2.points)  {
