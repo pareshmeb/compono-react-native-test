@@ -19,6 +19,15 @@ const styles = StyleSheet.create({
 
 export const Todos = () => {
   const defaultItems = sample.map((item, index) => ({ key: `item${index}`, ...item }));
+  console.log(defaultItems);
+  defaultItems.sort((item, item2)=>{
+    if(item.points > item2.points)  {
+      return 1;
+    } else if (item.points < item2.points){
+      return -1;
+    }
+    return 0;
+  })
   const [items, setItems] = useState<Item[]>(defaultItems);
 
   const addItem = (newItem: NewItem) => {
