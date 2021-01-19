@@ -31,7 +31,6 @@ export const CreateEntry = ({ onSave }: Props) => {
     let points = value.substr(-5);
     points = points.substr(0, -2);
     const actualPoint = points.substring(points.length - 3, 0);
-    console.log('test', points);
     value && onSave({ name: value, points: parseInt(actualPoint) });
     setValue('');
   }

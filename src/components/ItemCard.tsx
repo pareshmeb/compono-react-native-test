@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   textCritical: {
-    fontWeight: 'bold',
+    fontWeight: '100',
   },
   critical: {
     backgroundColor: 'red',
