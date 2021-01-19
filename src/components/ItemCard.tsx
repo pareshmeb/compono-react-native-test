@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   critical: {
     backgroundColor: 'red',
-    color: 'yellow'
+    color: 'yellow',
+    fontWeight: 'bold'
   }
 });
 
@@ -32,7 +33,7 @@ type Props = {
 }
 
 export const ItemCard: React.FC<Props> = ({ children, onDelete, critical }) => (
-  <View testID="itemCard" style={{ ...styles.container, ...critical ? styles.critical : {} , ...(critical ? styles.containerCritical : {}) }}>
+  <View testID="itemCard" style={{ ...styles.container, ...(critical ? styles.critical : {}) , ...(critical ? styles.containerCritical : {}) }}>
     <Text testID="itemName" style={{ ...styles.text, ...(critical ? styles.textCritical : {}) }}>{children}</Text>
     <Button testID="itemDeleteButton" onPress={onDelete} title="Delete" />
   </View>
