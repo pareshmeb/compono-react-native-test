@@ -28,7 +28,11 @@ export const CreateEntry = ({ onSave }: Props) => {
   const [value, setValue] = useState<string>('');
 
   const handleAdd = () => {
-    value && onSave({ name: value, points: 0 });
+    let points = value.substr(-5);
+    points = points.substr(0, -2);
+    const actualPoint = points.substring(points.length - 3, 0);
+    console.log('test', points);
+    value && onSave({ name: value, points: parseInt(actualPoint) });
     setValue('');
   }
 
