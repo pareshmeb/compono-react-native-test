@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginTop: 2,
     backgroundColor: 'white',
+    fontWeight: 'bold'
   },
   containerCritical: {
     backgroundColor: '#ffdddd',
