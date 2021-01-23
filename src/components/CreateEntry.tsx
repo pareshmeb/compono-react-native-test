@@ -28,10 +28,17 @@ export const CreateEntry = ({ onSave }: Props) => {
   const [value, setValue] = useState<string>('');
 
   const handleAdd = () => {
+    let actualPoint: number = 0;
     let points = value.substr(-5);
-    points = points.substr(0, -2);
-    const actualPoint = points.substring(points.length - 3, 0);
-    value && onSave({ name: value, points: parseInt(actualPoint) });
+    let name: string = value.substr(0, value.length-5);
+    let actualPointString: string = points.substr(0, 2);
+    if (isNaN(parseInt(actualPointString))) {
+      actualPoint = 0;
+      name = value;
+    } else {
+      actualPoint = parseInt(actualPointString.trim());
+    }
+    value && onSave({ name: name.trim(), points: actualPoint });
     setValue('');
   }
 
